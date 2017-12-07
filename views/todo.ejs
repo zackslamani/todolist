@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<title> My todo list </title>
+
+	</head>
+
+	<body>
+		<h1> matodolist </h1>
+
+		<ul>
+			<% todolist.ForEach(function(todo, undex){
+			<li><a href="/todo/supprimer"<%= undex %>✘</a> <%= todo %> </li>
+		 }); %>
+		</ul>
+		<form action = "todo/ajouter" methode = "post">
+			<p>
+			<label for="newtodo"> Que dois je faire ? </label>
+			<input type="text" name="newtodo" id="newtodo" autofocus/>
+			<input type="submit" />
+			</p>
+		</form>
+	</body>
+</html>

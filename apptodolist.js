@@ -6,6 +6,9 @@ var urlencodedparser = bodyparser.urlencoded({extended: false });
 
 var app = express();
 
+var helpers = require('express-helpers')
+helpers(app)
+
 /* on utilise les sessions */
 
 app.use (session({secret:'todotopsecret'}))
@@ -30,8 +33,9 @@ app.use (session({secret:'todotopsecret'}))
 
 //on ajoute un element a la todolist
 
-.post('todo/ajouter', urlencodedparser, function(req, res){
+.post('/todo/ajouter', urlencodedparser, function(req, res){
 	if(req.body.newtodo != ''){
+		if (req.session.todolist === undefined) req.session.todolist = []
 		req.session.todolist.push(req.body.newtodo);
 	}
 	res.redirect('/todo');
